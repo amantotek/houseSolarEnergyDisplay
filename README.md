@@ -6,14 +6,16 @@ With a minor modification to an emonPi python file this suite of programs allows
 on same LAN as the emonPi
 
 ### Modification to emonPi program
-Modify a file on SD card of emonPi.
+Modify a file on SD card of emonPi. Example below uses editor kate
+```
 $ cd /opt/openenergymonitor/emonpi/lcd
 $ cp emonPiLCD.py emonPiLCD.py.v00 (Keep original)
 $ kate emonPiLCD.py &
+```
 Near top of file add...
 
 ```
-import netcatRxTx #amc 15Oct2022
+import netcatRxTx
 ```
 #### Slow Refresh
 Near bottom of file add three lines between update and time.sleep for 30s updates
@@ -27,7 +29,7 @@ Near bottom of file add three lines between update and time.sleep for 30s update
 This relies on lcd_update_sec staying at 30s
 
 #### Fast Refresh
-for 5s update (recommended)
+for 5s update (recommended) modification near end becomes...
 ```
   updateLCD()
   for ix in range(6):
@@ -38,14 +40,20 @@ for 5s update (recommended)
 Here lcd_update_sec is not used
 
 ## Transmitter
+Below just simulates two fixed power levels being sent
+
 python3 netcatRxTx.py -t
+
+In real use within another python program the transmit function is called directly viz...
+netcatRxTx.trnsmt(sWatts1,sWatts2) #From Solar, to Grid (Watts)
 
 ## Terminal Receiver
 python3 netcatRxTx.py -r
 
 ## Graphical Receiver
+python3 netcatRxPwrGUI.py
+Placing this file in the 'cloud' e.g. Dropbox allows running it from any graphical device like a PC or laptop on the same LAN (Local Area Network) as the emonPi
+
 ![Exporting](20221017_0917pwrExport.png)
 
 ![Importing](20221016wattsSolarDark.png)
-
-
