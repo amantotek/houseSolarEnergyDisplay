@@ -42,7 +42,7 @@ for 5s update (recommended) modification near end becomes...
 Here lcd_update_sec is not used
 
 ## Transmitter
-Below just simulates two fixed power levels being sent
+Below just simulates two fixed power levels being sent. Useful for testing
 
 python3 netcatRxTx.py -t
 
@@ -59,7 +59,9 @@ python3 netcatRxPwrGUI.py
 Placing this file in the 'cloud' (e.g. Dropbox) allows running it from any graphical device like a PC or laptop on the same LAN (Local Area Network) as the emonPi
 
 ![Exporting](20221017_0917pwrExport.png)
+
 Above Solar generation exceeds the household demand so Export to the grid results 
 
 ![Importing](20221016wattsSolarDark.png)
+
 Above after dark the solar system no longer generates
