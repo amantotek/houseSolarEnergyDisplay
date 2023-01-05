@@ -1,19 +1,20 @@
 #!/usr/bin/python
-#Created 09Oct2022 by MD
-#Version 23 Nov 2022 1719
+#Created 09Oct2022 MD
+#Version 04Jan2023 10:17
 #Usage: python3 netcatRxPwrGUI.py
+#Receives transmitted power data from emonPi for graphical display on devices (eg laptops) on same LAN as emonPi
+# https://guide.openenergymonitor.org/technical/emonpi/ emonPi website
+#An addition to netcatRxTx.py in receive mode to show power flow graphically
+#https://www.pysimplegui.org/en/latest/cookbook/  see new Push() justify
+#as e.g.           [sg.Push(), sg.Text('23450w'), sg.Push()],
 #pip3 install --upgrade PySimpleGUI
 #python3 -m pip install --upgrade --no-cache-dir PySimpleGUI (update GUI)
 #https://www.pysimplegui.org/en/latest/call%20reference/ Call reference
 #https://www.pysimplegui.org/en/latest/ Home
-#$ scp netcatRxPwrGUI.py fred@192.168.0.52:/home/fred/Downloads (e.g. to kitchen)
-#https://www.pysimplegui.org/en/latest/cookbook/  see new Push() justify
-#as e.g.           [sg.Push(), sg.Text('23450w'), sg.Push()],
 import datetime
 import subprocess, time, os, sys
 
 import PySimpleGUI as sg
-
 sg.theme('SystemDefault')	# Add a touch of color was DarkAmber
 #Line of stars [sg.Text('*'*50)],
 DIREXPORT = '>'*21
@@ -37,6 +38,9 @@ layout = [
 
 OurFont = ("Courier", 16)
 wiindow = sg.Window('Electricity flow', layout, font=OurFont)
+eveent, values = wiindow.read(timeout=40, timeout_key='KYSOL') #Need this line to make next addition 
+wiindow["KYDATI"].Update("Waiting for emonPi") #To be filled with date and time
+wiindow.refresh() #Make updates show up immediately
 
 sPsolar = "?"
 sPgrid = "?"
@@ -61,7 +65,6 @@ while bRuun:
       break
     sAll = liine.rstrip().decode() #Convert Bytes to a string
     sImEx = ""
-    #print(sAll)
     lAll = sAll.split(',') #Convert comma seperated string to a list
     if len(lAll) == 3:
       sPsolar = lAll[0] #+ve if generating
