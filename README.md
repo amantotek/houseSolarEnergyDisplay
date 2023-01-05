@@ -10,11 +10,22 @@ here here
 ```
 Sample text here...
 ```
-
+#### Slow Refresh
+here here
+```
+Sample text here...
+```
+#### Fast Refresh
+here here
+```
+Sample text here...
+```
 
 ## Transmitter
+python3 netcatRxTx.py -t
 
 ## Terminal Receiver
+python3 netcatRxTx.py -r
 
 ## Graphical Receiver
 ![Exporting](20221017_0917pwrExport.png)
