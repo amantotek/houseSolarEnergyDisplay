@@ -19,6 +19,7 @@ Near top of file add...
 ```
 import netcatRxTx
 ```
+
 #### Slow Refresh
 Near bottom of file add three lines between update and time.sleep for 30s updates
 ```
@@ -40,6 +41,29 @@ for 5s update (recommended) modification near end becomes...
   #time.sleep(lcd_update_sec)
 ```
 Here lcd_update_sec is not used
+
+#### Packages needed on emonPi
+Packages socat and netcat are also needed. SSH into emonPi
+```
+ssh pi@192.168.0.51 (use here IP address that is shown on emonPi LCD alongside WiFi)
+(Ctrl D to exit else ~ if really stuck, untested)
+$ sudo apt install socat
+```
+
+netcat was already installed but check as below...
+```
+pi@emonpi:~ $ dpkg --list | grep netcat
+ii netcat-openbsd     1.195-2  armhf TCP/IP swiss army knife
+ii netcat-traditional 1.10-41.1 armhf TCP/IP swiss army knife
+
+pi@emonpi:~ $ dpkg --list | grep socat
+ii socat 1.7.3.2-2 armhf multipurpose relay for bidirectional data transfer
+
+pi@emonpi:~ $ pwd
+/home/pi
+```
+
+
 
 ## Transmitter
 Below just simulates two fixed power levels being sent. Useful for testing
