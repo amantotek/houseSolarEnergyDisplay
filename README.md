@@ -1,8 +1,10 @@
 # houseSolarEnergyDisplay
 ## Overview
-An emonPi https://guide.openenergymonitor.org/technical/emonpi/ monitors energy being used and energy from a solar array
-Export or Import from a mains supply (Electricity company) also occurs
-With a minor modification to an emonPi python file this suite of programs allows display of another device (e.g. laptop)
+An emonPi https://guide.openenergymonitor.org/technical/emonpi/ monitors energy being used and energy from a solar array.
+
+Export or Import from a mains supply (Electricity company) also occurs.
+
+With a minor modification to an emonPi python file this suite of programs allows display of one or more devices (e.g. laptop, PC)
 on same LAN as the emonPi
 
 ### Modification to emonPi program
@@ -44,7 +46,8 @@ Below just simulates two fixed power levels being sent
 
 python3 netcatRxTx.py -t
 
-In real use within another python program the transmit function is called directly viz...
+In real use, within another python program, the transmit function is called directly viz...
+
 netcatRxTx.trnsmt(sWatts1,sWatts2) #From Solar, to Grid (Watts)
 
 ## Terminal Receiver
@@ -52,8 +55,11 @@ python3 netcatRxTx.py -r
 
 ## Graphical Receiver
 python3 netcatRxPwrGUI.py
-Placing this file in the 'cloud' e.g. Dropbox allows running it from any graphical device like a PC or laptop on the same LAN (Local Area Network) as the emonPi
+
+Placing this file in the 'cloud' (e.g. Dropbox) allows running it from any graphical device like a PC or laptop on the same LAN (Local Area Network) as the emonPi
 
 ![Exporting](20221017_0917pwrExport.png)
+Above Solar generation exceeds the household demand so Export to the grid results 
 
 ![Importing](20221016wattsSolarDark.png)
+Above after dark the solar system no longer generates
